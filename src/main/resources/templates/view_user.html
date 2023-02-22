@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="${user.gender} + ' User'"></title>
+    <link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css}"/>
+</head>
+<body>
+<div class="container">
+    <h1 th:text="${user.firstName} + ' ' + ${user.lastName}"></h1>
+    <p><strong>Height:</strong> <span th:text="${user.height}"></span> cm</p>
+    <p><strong>Weight:</strong> <span th:text="${user.weight}"></span> kg</p>
+    <p><strong>Age:</strong> <span th:text="${user.age}"></span> years</p>
+    <p><strong>Recommended caloric intake:</strong> <span th:text="${user.recommendedCaloricIntake}"></span> calories per day</p>
+</div>
+</body>
+</html>
