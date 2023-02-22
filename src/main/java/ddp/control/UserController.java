@@ -4,6 +4,7 @@ import ddp.entity.User;
 import ddp.exception.ResourceNotFoundException;
 import ddp.repository.UserRepository;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,7 +23,7 @@ public class UserController {
      * @return Redirects to the template with info of newly saved {@link User}
      */
     @PostMapping("/create")
-    public String createUser(@ModelAttribute @Valid User user) {
+    public String createUser(@ModelAttribute @Valid final User user) {
         userRepository.save(user);
         return "redirect:/users/" + user.getId();
     }
@@ -45,7 +46,10 @@ public class UserController {
      * @return Template with {@link User} info
      */
     @GetMapping("/{id}")
-    public String getUser(@PathVariable Long id, Model model) {
+    public String getUser(
+            @NotBlank @PathVariable final Long id,
+            Model model
+    ) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("User", "id", id));
         model.addAttribute("user", user);
